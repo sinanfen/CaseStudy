@@ -1,0 +1,36 @@
+﻿@model NoteDetail
+@{
+    ViewData["Title"] = "add new note ";
+    Layout = "_Layout";
+}
+<div class="card mt-1 mb-1">
+    <div class="card-header">
+        <p>
+            <h3 class="text-center">Add a New NoteDetail</h3>
+        </p>
+    </div>
+    <div class="card-body">
+        <div class="row text">
+            <div class="col-md-8 offset-2">
+
+                <div class="row">
+                    <div class="col-md-8 offset-2">
+                        <form method="post" asp-controller="NoteDetails" asp-action="AddDetail">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-group">
+                                <label asp-for="Content" class="control-label"></label>
+                                <input asp-for="Content" class="form-control" />
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="submit" value="AddDetail" class="btn btn-outline-success float-right" />
+                                <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

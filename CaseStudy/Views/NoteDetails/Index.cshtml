@@ -1,0 +1,56 @@
+﻿@model IEnumerable<NoteDetail>
+
+@{
+    ViewData["Title"] = "List of Note Details";
+    Layout = "_Layout";
+}
+
+<h1>Notes</h1>
+
+
+
+@if (Model.Any())
+{
+    <div class="row container">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-12">
+                <ul>
+                    <li>
+                        Notlar
+                        <ul type="a">
+                            <li>
+                                Notlar & Detaylar
+                                <ul type="circle">
+                                    <li class="text-secondary"><h4>Note ID: @item.Notes.Id</h4></li>
+                                    <li class="text-secondary"><h4>Note Detail ID: @item.Id</h4></li>
+                                    <li class="text-warning"><strong>Note Content:</strong> @item.Notes?.Content</li>
+                                    <li class="text-success"><strong>Note Created By:</strong> @item.Notes.User?.FullName</li>
+                                    @for (int detay = 0; detay < item.Content.Length; detay++)
+                                    {
+
+                                        <li class="text-primary"><small><strong>Note Detail:</strong> @item.Content</small></li>
+                                        <li class="text-success"><strong><small>Note Detail Created By:</small></strong> @item.User?.FullName</li>
+                                        <a class="btn btn-primary btn-sm"
+                               asp-area="" asp-controller="NoteDetails" asp-action="AddDetail" asp-route-noteId="@item.Notes.Id">add new note details to main note.</a>
+                                        <a class="btn btn-danger btn-sm text-white" asp-controller="NoteDetails" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i> Delete</a>
+                                        break;
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        }
+
+    </div>
+}
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Note>
+
+@*Define ViewData*@
+@{
+    ViewData["Title"] = "List of Notes";
+    Layout = "_Layout";
+}
+
+@*@foreach (var item in Model)
+{
+    <div class="form-group">
+        <h5 class="form-control">@item.Content</h5>
+        <h5 class="form-control">@item.NoteDetails</h5>
+    </div>
+}
+*@
+<div style="position:fixed;right:25px;bottom:25px;" class="text-white">
+    <a asp-area="" asp-controller="Notes" asp-action="Add" class="btn btn-sm btn-primary mt-3">Add New Note</a>
+        <a href="NoteDetails/Index" class="btn btn-sm btn-primary mt-3">Notes and details</a>
+</div>
+<div class="row container">
+<h1>Notes</h1>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            Notlar
+            <ul type="a">
+                <li>
+                    İçerikler
+                    <ul type="circle">
+                        <li class="text-warning"><strong>Note:</strong> Id: @item.Id － @item.Content</li>
+                        <li class="text-success"><small><strong>Created By:</strong> @item.User?.FullName</small></li>
+                            <a asp-area="" asp-controller="Notes" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger mt-1">Delete</a>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+    }
+
+</ul>
+</div>
